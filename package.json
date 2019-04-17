@@ -1,0 +1,32 @@
+{
+  "name": "the-publisher-azure-functions",
+  "version": "",
+  "scripts": {
+    "build": "webpack --mode=production",
+    "build:production": "npm run prestart && npm prune --production",
+    "watch": "webpack --mode=development --watch",
+    "prestart": "npm run build && func extensions install",
+    "start:host": "func start",
+    "start": "concurrently \"npm run start:host\" \"npm run watch\"",
+    "test": "echo \"No tests yet...\""
+  },
+  "description": "",
+  "devDependencies": {
+    "@azure/functions": "^1.0.1-beta1",
+    "@types/node": "^11.13.4",
+    "concurrently": "^4.1.0",
+    "ts-loader": "^5.3.3",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typescript": "^3.3.3",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
+  "github": {
+    "username": "dnasir",
+    "repo": "dnasir.github.io",
+    "token": "e687debdae337e1da9be239c6e933edabd7e39a8"
+  }
+}
