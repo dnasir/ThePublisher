@@ -2,7 +2,7 @@
   "name": "thepublisher",
   "version": "",
   "scripts": {
-    "postinstall": "npm run build",
+    "postinstall": "node ./build/postinstall.js",
     "build": "webpack --mode=production",
     "build:production": "npm run prestart && npm prune --production",
     "watch": "webpack --mode=development --watch",
