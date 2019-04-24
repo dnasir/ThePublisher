@@ -1,0 +1,18 @@
+{
+  "bindings": [
+    {
+      "name": "rssCheckerTimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 */5 * * * *"
+    },
+    {
+      "name": "outputQueueItem",
+      "type": "queue",
+      "direction": "out",
+      "queueName": "rsscheckertriggerqueue",
+      "connection": "AzureWebJobsStorage"
+    }
+  ],
+  "scriptFile": "../dist/RssCheckerTimer/index.js"
+}

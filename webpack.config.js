@@ -5,7 +5,8 @@ module.exports = {
   target: 'node',
   entry: {
     DailyBuilder: path.resolve(__dirname, './DailyBuilder/index.ts'),
-    RssChecker: path.resolve(__dirname, './RssChecker/index.ts')
+    RssChecker: path.resolve(__dirname, './RssChecker/index.ts'),
+    RssCheckerTimer: path.resolve(__dirname, './RssCheckerTimer/index.ts'),
   },
   module: {
     rules: [
