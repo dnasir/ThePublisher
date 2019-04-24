@@ -1,0 +1,19 @@
+{
+  "bindings": [
+    {
+      "name": "inputQueueItem",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "rsscheckertriggerqueue",
+      "connection": "AzureWebJobsStorage"
+    },
+    {
+      "name": "outputQueueItem",
+      "type": "queue",
+      "direction": "out",
+      "queueName": "latestpoststriggerqueue",
+      "connection": "AzureWebJobsStorage"
+    }
+  ],
+  "scriptFile": "../dist/RssChecker/index.js"
+}

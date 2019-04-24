@@ -4,7 +4,8 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 module.exports = {
   target: 'node',
   entry: {
-    DailyBuilder: path.resolve(__dirname, './DailyBuilder/index.ts')
+    DailyBuilder: path.resolve(__dirname, './DailyBuilder/index.ts'),
+    RssChecker: path.resolve(__dirname, './RssChecker/index.ts')
   },
   module: {
     rules: [
