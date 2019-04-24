@@ -4,7 +4,7 @@ import FeedParser from 'feedparser';
 
 const func: AzureFunction = async function (context: Context, inputQueueItem: string): Promise<void> {
   if (!inputQueueItem) {
-    context.log.error('RSS feed URL missing. Exiting.');
+    context.log.error('[RssChecker] RSS feed URL missing. Exiting.');
     return context.done();
   }
 
@@ -23,12 +23,16 @@ const func: AzureFunction = async function (context: Context, inputQueueItem: st
 
     response.data.pipe(feedparser);
 
-    const latestPost = await new Promise((resolve, reject) => {
+    const latestPosts = await new Promise((resolve, reject) => {
       let items = [];
 
       feedparser.on('error', reject);
       feedparser.on('end', () => {
-        resolve(items.map(x => x.link));
+        const links = items.map(x => x.link);
+
+        context.log(`[RssChecker] Got ${links.length} link(s).`);
+
+        resolve(links);
       });
 
       feedparser.on('readable', function () {
@@ -41,7 +45,7 @@ const func: AzureFunction = async function (context: Context, inputQueueItem: st
       });
     });
 
-    context.bindings.outputQueueItem = latestPost;
+    context.bindings.outputQueueItem = latestPosts;
   } catch (e) {
     context.log.error(e);
   }
