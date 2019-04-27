@@ -9,7 +9,10 @@ const func: AzureFunction = async function (context: Context, inputQueueItem: st
   }
 
   try {
-    const feedparser = new FeedParser();
+    const feedparser = new FeedParser({
+      normalize: false,
+      addmeta: false
+    });
     const response = await axios({
       method: 'get',
       url: inputQueueItem,
@@ -38,6 +41,8 @@ const func: AzureFunction = async function (context: Context, inputQueueItem: st
       feedparser.on('readable', function () {
         const stream = this;
         let item: any;
+
+        context.log(stream.meta);
 
         while (item = stream.read()) {
           items.push(item);
